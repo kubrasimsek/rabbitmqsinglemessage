@@ -11,16 +11,17 @@ namespace RabbitMq.Subscriber
         static void Main(string[] args)
         {
             var factory = new ConnectionFactory();
-            factory.Uri = new Uri("linkinizi buraya yazınız");
+            factory.Uri = new Uri("amqps://qzflqnco:mVMusurqDBr160IfGqxFuf890xJiK6B2@clam.rmq.cloudamqp.com/qzflqnco");
 
             using var connection = factory.CreateConnection();
 
             var channel = connection.CreateModel();
 
-            //Eğer publisher 'ın bunu tanımladığına eminseniz bunu silebilirsiniz.
+            //Eğer publisher.2ın bunu tanımladığına eminseniz bunu silebilirsiniz.
             //Eğer publisher da tanımlanmadıysa burda tanımlama yapılır.
             //Her iki taraf için de tanımlama yapılacaksa parametreler aynı olmalı
             ////channel.QueueDeclare("hello-queue", true, false, false);
+
             var consumer = new EventingBasicConsumer(channel);
 
             channel.BasicConsume("hello-queue", true, consumer);

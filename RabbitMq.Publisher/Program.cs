@@ -10,24 +10,18 @@ namespace RabbitMq.Publisher
         static void Main(string[] args)
         {
             var factory = new ConnectionFactory();
-            factory.Uri = new Uri("linkinizi buraya yazınız");
+            factory.Uri = new Uri("amqps://qzflqnco:mVMusurqDBr160IfGqxFuf890xJiK6B2@clam.rmq.cloudamqp.com/qzflqnco");
 
             using var connection = factory.CreateConnection();
 
             var channel = connection.CreateModel();
-            //yoksa sıfırdan oluşturur varsa bir işlem yapmaz.
             channel.QueueDeclare("hello-queue", true, false, false);
+            string message = "hello world";
 
-            Enumerable.Range(1, 50).ToList().ForEach(x =>
-            {
-                string message = $"Message {x}";
+            var messageBody = Encoding.UTF8.GetBytes(message);
+            channel.BasicPublish(string.Empty, "hello-queue", null, messageBody);
 
-                var messageBody = Encoding.UTF8.GetBytes(message);
-                channel.BasicPublish(string.Empty, "hello-queue", null, messageBody);
-
-                Console.WriteLine($"mesaj gönderilmiştir : {message}");
-            });
-
+            Console.WriteLine("mesaj gönderilmiştir");
             Console.ReadLine();
         }
     }
