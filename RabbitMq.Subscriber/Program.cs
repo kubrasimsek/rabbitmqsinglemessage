@@ -11,7 +11,7 @@ namespace RabbitMq.Subscriber
         static void Main(string[] args)
         {
             var factory = new ConnectionFactory();
-            factory.Uri = new Uri("amqps://qzflqnco:mVMusurqDBr160IfGqxFuf890xJiK6B2@clam.rmq.cloudamqp.com/qzflqnco");
+            factory.Uri = new Uri("linki buraya ekleyiniz");
 
             using var connection = factory.CreateConnection();
 

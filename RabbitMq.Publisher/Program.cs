@@ -10,7 +10,7 @@ namespace RabbitMq.Publisher
         static void Main(string[] args)
         {
             var factory = new ConnectionFactory();
-            factory.Uri = new Uri("amqps://qzflqnco:mVMusurqDBr160IfGqxFuf890xJiK6B2@clam.rmq.cloudamqp.com/qzflqnco");
+            factory.Uri = new Uri("linki buraya yazınız");
 
             using var connection = factory.CreateConnection();
 
